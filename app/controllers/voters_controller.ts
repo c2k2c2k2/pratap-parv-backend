@@ -16,12 +16,12 @@ export default class VotersController {
   /**
    * Display form to create a new record
    */
-  async create({ }: HttpContext) { }
+  // async create({ }: HttpContext) { }
 
   /**
    * Handle form submission for the create action
    */
-  async store({ request }: HttpContext) { }
+  // async store({ request }: HttpContext) { }
 
   /**
    * Show individual record

@@ -1,5 +1,5 @@
 import { DateTime } from 'luxon'
-import { BaseModel, belongsTo, column, hasOne } from '@adonisjs/lucid/orm'
+import { BaseModel, column, hasOne } from '@adonisjs/lucid/orm'
 import ExtraInfo from './extra_info.js'
 import type { HasOne } from '@adonisjs/lucid/types/relations'
 
