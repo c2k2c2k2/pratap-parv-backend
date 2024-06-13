@@ -1,14 +1,10 @@
 import vine from '@vinejs/vine'
 
-/**
- * Validates the panchayat_samiti's creation action
- */
-
-export const createPanchayatSamitiValidator = vine.compile(
+export const createCasteCategoryValidator = vine.compile(
     vine.object({
         name: vine.string().unique(async (db, value) => {
             const party = await db
-                .from('panchayat_samitis')
+                .from('caste_categories')
                 .where('name', value)
                 .first()
             return !party
@@ -16,12 +12,21 @@ export const createPanchayatSamitiValidator = vine.compile(
     })
 )
 
-export const updatePanchayatSamitiValidator = vine
+/**
+ * Validates the party's update action
+ */
+// export const updatePartyValidator = vine.compile(
+//     vine.object({
+//         name: vine.string().trim().minLength(3)
+//     })
+// )
+
+export const updateCasteCategoryValidator = vine
     .compile(
         vine.object({
             name: vine.string().unique(async (db, value) => {
                 const party = await db
-                    .from('panchayat_samitis')
+                    .from('caste_categories')
                     .where('name', value)
                     .first()
                 return !party

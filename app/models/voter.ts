@@ -1,7 +1,8 @@
 import { DateTime } from 'luxon'
-import { BaseModel, column, hasOne } from '@adonisjs/lucid/orm'
+import { BaseModel, column, hasMany, hasOne } from '@adonisjs/lucid/orm'
 import ExtraInfo from './extra_info.js'
-import type { HasOne } from '@adonisjs/lucid/types/relations'
+import type { HasMany, HasOne } from '@adonisjs/lucid/types/relations'
+import FamilyMember from './family_member.js'
 
 export default class Voter extends BaseModel {
   @column({ isPrimary: true })
@@ -67,4 +68,7 @@ export default class Voter extends BaseModel {
 
   @hasOne(() => ExtraInfo)
   declare extraInfo: HasOne<typeof ExtraInfo>
+
+  @hasMany(() => FamilyMember)
+  declare members: HasMany<typeof FamilyMember>
 }

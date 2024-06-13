@@ -8,7 +8,9 @@ export default class VotersController {
   async index({ request }: HttpContext) {
     const page = request.input('page', 1)
     const limit = request.input('limit', 10)
-    const voters = await Voter.query().paginate(page, limit);
+    const voters = await Voter.query().preload("members", (q) => {
+      q.preload("member")
+    }).paginate(page, limit);
 
     return voters;
   }
@@ -34,6 +36,8 @@ export default class VotersController {
         q.preload("parishad")
         q.preload("panchayatSamiti")
         q.preload("casteCategory")
+      }).preload("members", (m) => {
+        m.preload("member")
       }).firstOrFail();
 
       return response.status(200).json({
